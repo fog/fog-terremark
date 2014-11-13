@@ -1,7 +1,12 @@
-require "fog/terremark/version"
+require 'fog/terremark/version'
+require 'fog/core'
+require 'fog/xml'
+require 'fog/terremark/shared'
+require 'fog/terremark/parser'
+require 'fog/terremark/vcloud'
 
 module Fog
   module Terremark
-    # Your code goes here...
+    VCLOUD_OPTIONS = [:terremark_vcloud_username, :terremark_vcloud_password]
   end
 end
