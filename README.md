@@ -1,6 +1,6 @@
 # Fog::Terremark
 
-Module for the 'fog' gem to support Terremark
+Module for the 'fog' gem to support Terremark vCloud
 
 ## Help Needed
 

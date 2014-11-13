@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Fog::Terremark::VERSION
   spec.authors       = ["Paulo Henrique Lopes Ribeiro"]
   spec.email         = ["plribeiro3000@gmail.com"]
-  spec.summary       = %q{Module for the 'fog' gem to support Terremark.}
+  spec.summary       = %q{Module for the 'fog' gem to support Terremark vCloud.}
   spec.description   = %q{This library can be used as a module for `fog` or as standalone provider
-                        to use the Terremark in applications.}
+                        to use the Terremark vCloud in applications.}
   spec.homepage      = ""
   spec.license       = "MIT"
 
