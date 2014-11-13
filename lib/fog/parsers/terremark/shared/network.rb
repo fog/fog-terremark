@@ -2,7 +2,7 @@ module Fog
   module Parsers
     module Terremark
       module Shared
-        class Network < TerremarkParser
+        class Network < Base
           def reset
             @response = {
               "links" => []

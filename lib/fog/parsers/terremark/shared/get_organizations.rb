@@ -2,7 +2,7 @@ module Fog
   module Parsers
     module Terremark
       module Shared
-        class GetOrganizations < TerremarkParser
+        class GetOrganizations < Base
           # include Fog::Terremark::Shared::Parser
 
           def reset

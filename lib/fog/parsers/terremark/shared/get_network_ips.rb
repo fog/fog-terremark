@@ -2,7 +2,7 @@ module Fog
   module Parsers
     module Terremark
       module Shared
-        class GetNetworkIps< TerremarkParser
+        class GetNetworkIps< Base
           def reset
             @ip_address = {}
             @response = { 'IpAddresses' => [] }

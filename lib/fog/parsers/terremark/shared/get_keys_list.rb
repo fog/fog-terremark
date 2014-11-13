@@ -3,7 +3,7 @@ module Fog
   module Parsers
     module Terremark
       module Shared
-        class GetKeysList < TerremarkParser
+        class GetKeysList < Base
           def reset
             @response = { 'Keys' => [] }
             @key = {}

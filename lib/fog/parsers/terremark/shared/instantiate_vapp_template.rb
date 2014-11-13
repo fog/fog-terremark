@@ -2,7 +2,7 @@ module Fog
   module Parsers
     module Terremark
       module Shared
-        class InstantiateVappTemplate < TerremarkParser
+        class InstantiateVappTemplate < Base
           def reset
             @property_key
             @response = { 'Links' => [] }

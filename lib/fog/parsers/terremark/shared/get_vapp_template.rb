@@ -2,7 +2,7 @@ module Fog
   module Parsers
     module Terremark
       module Shared
-        class GetVappTemplate < TerremarkParser
+        class GetVappTemplate < Base
           def reset
             @response = { 'Links' => [] }
           end

@@ -2,7 +2,7 @@ module Fog
   module Parsers
     module Terremark
       module Shared
-        class PublicIp < TerremarkParser
+        class PublicIp < Base
           def reset
             @response = {}
           end

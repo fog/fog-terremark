@@ -2,7 +2,7 @@ module Fog
   module Parsers
     module Terremark
       module Shared
-        class GetVdc < TerremarkParser
+        class GetVdc < Base
           def reset
             @in_storage_capacity = false
             @in_cpu = false

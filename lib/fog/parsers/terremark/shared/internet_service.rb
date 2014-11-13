@@ -2,7 +2,7 @@ module Fog
   module Parsers
     module Terremark
       module Shared
-        class InternetService < TerremarkParser
+        class InternetService < Base
           def reset
             @in_public_ip_address = false
             @response = { 'PublicIpAddress' => {} }

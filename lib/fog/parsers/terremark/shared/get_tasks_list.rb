@@ -2,7 +2,7 @@ module Fog
   module Parsers
     module Terremark
       module Shared
-        class GetTasksList < TerremarkParser
+        class GetTasksList < Base
           def reset
             @response = { 'Tasks' => [] }
             @task = {}

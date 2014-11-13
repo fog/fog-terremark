@@ -2,7 +2,7 @@ module Fog
   module Parsers
     module Terremark
       module Shared
-        class GetCatalog < TerremarkParser
+        class GetCatalog < Base
           def reset
             @response = { 'CatalogItems' => [] }
           end

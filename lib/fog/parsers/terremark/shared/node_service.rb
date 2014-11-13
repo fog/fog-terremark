@@ -2,7 +2,7 @@ module Fog
   module Parsers
     module Terremark
       module Shared
-        class NodeService < TerremarkParser
+        class NodeService < Base
           def reset
             @response = {}
           end
