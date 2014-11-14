@@ -1,31 +1,30 @@
 module Fog
   module Parsers
     module Terremark
-      module Shared
-        class GetVdc < Base
-          def reset
-            @in_storage_capacity = false
-            @in_cpu = false
-            @in_memory = false
-            @in_instantiated_vms_quota = false
-            @in_deployed_vms_quota = false
-            @response = {
+      class GetVdc < Base
+        def reset
+          @in_storage_capacity = false
+          @in_cpu = false
+          @in_memory = false
+          @in_instantiated_vms_quota = false
+          @in_deployed_vms_quota = false
+          @response = {
               'links' => [],
               'AvailableNetworks' => [],
               'ComputeCapacity'   => {
-                'Cpu' => {},
-                'DeployedVmsQuota' => {},
-                'InstantiatedVmsQuota' => {},
-                'Memory' => {}
+                  'Cpu' => {},
+                  'DeployedVmsQuota' => {},
+                  'InstantiatedVmsQuota' => {},
+                  'Memory' => {}
               },
               'StorageCapacity'  => {},
               'ResourceEntities' => []
-            }
-          end
+          }
+        end
 
-          def start_element(name, attributes)
-            super
-            case name
+        def start_element(name, attributes)
+          super
+          case name
             when 'Cpu'
               @in_cpu = true
             when 'DeployedVmsQuota'
@@ -49,11 +48,11 @@ module Fog
               vdc = extract_attributes(attributes)
               @response['href'] = vdc['href']
               @response['name'] = vdc['name']
-            end
           end
+        end
 
-          def end_element(name)
-            case name
+        def end_element(name)
+          case name
             when 'Allocated', 'Limit', 'Units', 'Used'
               if @in_cpu
                 @response['ComputeCapacity']['Cpu'][name] = value
@@ -78,7 +77,6 @@ module Fog
               @in_storage_capacity = false
             when 'Type'
               @response[name] = value
-            end
           end
         end
       end

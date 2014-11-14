@@ -15,7 +15,7 @@ module Fog
           request(
               :expects  => 200,
               :method   => 'GET',
-              :parser   => Fog::Parsers::Terremark::Shared::Network.new,
+              :parser   => Fog::Parsers::Terremark::Network.new,
               :path     => "network/#{network_id}"
           )
         end

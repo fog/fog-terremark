@@ -20,7 +20,7 @@ module Fog
           request(
               :expects  => 200,
               :method   => 'GET',
-              :parser   => Fog::Parsers::Terremark::Shared::GetTasksList.new,
+              :parser   => Fog::Parsers::Terremark::GetTasksList.new,
               :path     => "tasksList/#{tasks_list_id}"
           )
         end

@@ -30,7 +30,7 @@ module Fog
           request(
               :expects  => 200,
               :method   => 'GET',
-              :parser   => Fog::Parsers::Terremark::Shared::Vapp.new,
+              :parser   => Fog::Parsers::Terremark::Vapp.new,
               :path     => "vapp/#{vapp_id}"
           )
         end

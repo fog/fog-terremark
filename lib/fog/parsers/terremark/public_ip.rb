@@ -1,19 +1,17 @@
 module Fog
   module Parsers
     module Terremark
-      module Shared
-        class PublicIp < Base
-          def reset
-            @response = {}
-          end
+      class PublicIp < Base
+        def reset
+          @response = {}
+        end
 
-          def end_element(name)
-            case name
+        def end_element(name)
+          case name
             when 'Href', 'Name'
               @response[name.downcase] = value
             when 'Id'
               @response['id'] = value.to_i
-            end
           end
         end
       end

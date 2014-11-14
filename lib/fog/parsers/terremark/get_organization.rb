@@ -1,17 +1,16 @@
 module Fog
   module Parsers
     module Terremark
-      module Shared
-        class GetOrganization < Base
-          # include Fog::Terremark::Shared::Parser
+      class GetOrganization < Base
+        # include Fog::Terremark::Shared::Parser
 
-          def reset
-            @response = { 'Links' => [] }
-          end
+        def reset
+          @response = { 'Links' => [] }
+        end
 
-          def start_element(name, attributes)
-            super
-            case name
+        def start_element(name, attributes)
+          super
+          case name
             when 'Link'
               link = extract_attributes(attributes)
               until attributes.empty?
@@ -35,13 +34,12 @@ module Fog
               end
               @response['href'] = org['href']
               @response['name'] = org['name']
-            end
           end
+        end
 
-          def end_element(name)
-            if name == 'Description'
-              @response[name] = value
-            end
+        def end_element(name)
+          if name == 'Description'
+            @response[name] = value
           end
         end
       end

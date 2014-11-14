@@ -1,16 +1,15 @@
 module Fog
   module Parsers
     module Terremark
-      module Shared
-        class InternetService < Base
-          def reset
-            @in_public_ip_address = false
-            @response = { 'PublicIpAddress' => {} }
-          end
+      class InternetService < Base
+        def reset
+          @in_public_ip_address = false
+          @response = { 'PublicIpAddress' => {} }
+        end
 
-          def start_element(name, attributes)
-            super
-            case name
+        def start_element(name, attributes)
+          super
+          case name
             when 'Href'
               data = extract_attributes(attributes)
               if @in_public_ip_address
@@ -20,11 +19,11 @@ module Fog
               end
             when 'PublicIpAddress'
               @in_public_ip_address = true
-            end
           end
+        end
 
-          def end_element(name)
-            case name
+        def end_element(name)
+          case name
             when 'Description', 'Protocol'
               @response[name] = value
             when 'Enabled'
@@ -49,7 +48,6 @@ module Fog
               @response[name] = value.to_i
             when 'PublicIpAddress'
               @in_public_ip_address = false
-            end
           end
         end
       end

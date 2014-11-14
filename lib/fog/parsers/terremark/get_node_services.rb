@@ -1,15 +1,14 @@
 module Fog
   module Parsers
     module Terremark
-      module Shared
-        class GetNodeServices < Base
-          def reset
-            @node_service = {}
-            @response = { 'NodeServices' => [] }
-          end
+      class GetNodeServices < Base
+        def reset
+          @node_service = {}
+          @response = { 'NodeServices' => [] }
+        end
 
-          def end_element(name)
-            case name
+        def end_element(name)
+          case name
             when 'Description', 'Href', 'Name', 'IpAddress'
               @node_service[name] = value
             when 'Enabled'
@@ -23,7 +22,6 @@ module Fog
             when 'NodeService'
               @response['NodeServices'] << @node_service
               @node_service = {}
-            end
           end
         end
       end

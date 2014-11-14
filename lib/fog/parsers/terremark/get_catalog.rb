@@ -1,15 +1,14 @@
 module Fog
   module Parsers
     module Terremark
-      module Shared
-        class GetCatalog < Base
-          def reset
-            @response = { 'CatalogItems' => [] }
-          end
+      class GetCatalog < Base
+        def reset
+          @response = { 'CatalogItems' => [] }
+        end
 
-          def start_element(name, attributes)
-            super
-            case name
+        def start_element(name, attributes)
+          super
+          case name
             when 'CatalogItem'
               catalog_item = extract_attributes(attributes)
               catalog_item["id"] = catalog_item["href"].split('/').last
@@ -18,13 +17,12 @@ module Fog
             when 'Catalog'
               catalog = extract_attributes(attributes)
               @response['name'] = catalog['name']
-            end
           end
+        end
 
-          def end_element(name)
-            if name == 'Description'
-              @response[name] = value
-            end
+        def end_element(name)
+          if name == 'Description'
+            @response[name] = value
           end
         end
       end

@@ -23,7 +23,7 @@ module Fog
           request(
               :expects  => 202,
               :method   => 'POST',
-              :parser   => Fog::Parsers::Terremark::Shared::Task.new,
+              :parser   => Fog::Parsers::Terremark::Task.new,
               :path     => "vApp/#{vapp_id}/power/action/powerOff"
           )
         end

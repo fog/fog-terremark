@@ -43,7 +43,7 @@ module Fog
               :expects  => 200,
               :headers  => {'Content-Type' => 'application/xml'},
               :method   => 'POST',
-              :parser   => Fog::Parsers::Terremark::Shared::InternetService.new,
+              :parser   => Fog::Parsers::Terremark::InternetService.new,
               :path     => "api/extensions/v1.6/publicIp/#{ip_id}/internetServices",
               :override_path => true
           )

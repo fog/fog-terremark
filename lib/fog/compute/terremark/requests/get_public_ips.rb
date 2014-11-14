@@ -17,7 +17,7 @@ module Fog
           opts = {
               :expects  => 200,
               :method   => 'GET',
-              :parser   => Fog::Parsers::Terremark::Shared::GetPublicIps.new,
+              :parser   => Fog::Parsers::Terremark::GetPublicIps.new,
               :path     => "vdc/#{vdc_id}/publicIps"
           }
           if self.class == Fog::Terremark::Ecloud::Real

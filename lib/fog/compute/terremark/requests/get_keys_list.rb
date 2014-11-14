@@ -20,7 +20,7 @@ module Fog
           response = request(
               :expects  => 200,
               :method   => 'GET',
-              :parser   => Fog::Parsers::Terremark::Shared::GetKeysList.new,
+              :parser   => Fog::Parsers::Terremark::GetKeysList.new,
               :path     => "api/extensions/v1.6/org/#{organization_id}/keys",
               :override_path => true
           )

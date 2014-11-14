@@ -1,16 +1,15 @@
 module Fog
   module Parsers
     module Terremark
-      module Shared
-        class GetTasksList < Base
-          def reset
-            @response = { 'Tasks' => [] }
-            @task = {}
-          end
+      class GetTasksList < Base
+        def reset
+          @response = { 'Tasks' => [] }
+          @task = {}
+        end
 
-          def start_element(name, attributes)
-            super
-            case name
+        def start_element(name, attributes)
+          super
+          case name
             when 'Owner', 'Result'
               data = extract_templates(attributes)
               @task[name] = data
@@ -19,14 +18,13 @@ module Fog
             when 'TasksList'
               tasks_list = extract_templates(attributes)
               @response['href'] = tasks_list['href']
-            end
           end
+        end
 
-          def end_element(name)
-            if name == 'Task'
-              @response['Tasks'] << @task
-              @task = {}
-            end
+        def end_element(name)
+          if name == 'Task'
+            @response['Tasks'] << @task
+            @task = {}
           end
         end
       end

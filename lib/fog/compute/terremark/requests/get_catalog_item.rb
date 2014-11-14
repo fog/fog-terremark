@@ -23,7 +23,7 @@ module Fog
           request(
               :expects  => 200,
               :method   => 'GET',
-              :parser   => Fog::Parsers::Terremark::Shared::GetCatalogItem.new,
+              :parser   => Fog::Parsers::Terremark::GetCatalogItem.new,
               :path     => "catalogItem/#{catalog_item_id}"
           )
         end

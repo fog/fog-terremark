@@ -23,7 +23,7 @@ module Fog
           request(
               :expects  => 200,
               :method   => 'GET',
-              :parser   => Fog::Parsers::Terremark::Shared::GetVappTemplate.new,
+              :parser   => Fog::Parsers::Terremark::GetVappTemplate.new,
               :path     => "vAppTemplate/#{vapp_template_id}"
           )
         end

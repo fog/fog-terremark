@@ -20,7 +20,7 @@ module Fog
           request(
               :expects  => 200,
               :method   => 'GET',
-              :parser   => Fog::Parsers::Terremark::Shared::GetCatalog.new,
+              :parser   => Fog::Parsers::Terremark::GetCatalog.new,
               :path     => "vdc/#{vdc_id}/catalog"
           )
         end

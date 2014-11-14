@@ -1,17 +1,16 @@
 module Fog
   module Parsers
     module Terremark
-      module Shared
-        class Network < Base
-          def reset
-            @response = {
+      class Network < Base
+        def reset
+          @response = {
               "links" => []
-            }
-          end
+          }
+        end
 
-          def start_element(name,attributes=[])
-            super
-            case name
+        def start_element(name,attributes=[])
+          super
+          case name
             when "Network"
               @response = extract_attributes(attributes)
               if @response.key?("name")
@@ -23,14 +22,13 @@ module Fog
             when "Link"
               link = extract_attributes(attributes)
               @response["links"] << link
-            end
           end
+        end
 
-          def end_element(name)
-            case name
+        def end_element(name)
+          case name
             when "Gateway", "Netmask", "FenceMode"
               @response[name.downcase] = value
-            end
           end
         end
       end

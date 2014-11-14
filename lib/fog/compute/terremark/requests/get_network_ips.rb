@@ -15,7 +15,7 @@ module Fog
           opts =  {
               :expects  => 200,
               :method   => 'GET',
-              :parser   => Fog::Parsers::Terremark::Shared::GetNetworkIps.new,
+              :parser   => Fog::Parsers::Terremark::GetNetworkIps.new,
               :path     => "network/#{network_id}/ipAddresses"
           }
           if self.is_a?(Fog::Terremark::Ecloud::Real)

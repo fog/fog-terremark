@@ -19,7 +19,7 @@ module Fog
                           'Content-Type'  => "application/vnd.vmware.vcloud.orgList+xml"
                       },
                       :method   => 'POST',
-                      :parser   => Fog::Parsers::Terremark::Shared::GetOrganizations.new,
+                      :parser   => Fog::Parsers::Terremark::GetOrganizations.new,
                       :path     => 'login'
                   })
         end

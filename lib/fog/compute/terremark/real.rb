@@ -15,7 +15,7 @@ module Fog
                                              },
                                              :host      => @host,
                                              :method    => 'POST',
-                                             :parser    => Fog::Parsers::Terremark::Shared::GetOrganizations.new,
+                                             :parser    => Fog::Parsers::Terremark::GetOrganizations.new,
                                              :path      => "#{@path}/login"
                                          })
           response.headers['Set-Cookie']

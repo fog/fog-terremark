@@ -27,7 +27,7 @@ module Fog
           request(
               :expects  => 200,
               :method   => 'GET',
-              :parser   => Fog::Parsers::Terremark::Shared::Task.new,
+              :parser   => Fog::Parsers::Terremark::Task.new,
               :path     => "task/#{task_id}"
           )
         end

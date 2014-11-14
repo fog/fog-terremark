@@ -1,14 +1,13 @@
 module Fog
   module Parsers
     module Terremark
-      module Shared
-        class NodeService < Base
-          def reset
-            @response = {}
-          end
+      class NodeService < Base
+        def reset
+          @response = {}
+        end
 
-          def end_element(name)
-            case name
+        def end_element(name)
+          case name
             when 'Description', 'Href', 'IpAddress', 'Name', 'Protocol'
               @response[name] = value
             when 'Enabled'
@@ -19,7 +18,6 @@ module Fog
               end
             when 'Id', 'Port'
               @response[name] = value.to_i
-            end
           end
         end
       end

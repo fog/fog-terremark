@@ -1,24 +1,23 @@
 module Fog
   module Parsers
     module Terremark
-      module Shared
-        class GetInternetServices < Base
-          def reset
-            @in_public_ip_address = false
-            @internet_service = {}
-            @response = { 'InternetServices' => [] }
-          end
+      class GetInternetServices < Base
+        def reset
+          @in_public_ip_address = false
+          @internet_service = {}
+          @response = { 'InternetServices' => [] }
+        end
 
-          def start_element(name, attributes)
-            super
-            case name
+        def start_element(name, attributes)
+          super
+          case name
             when 'PublicIpAddress'
               @in_public_ip_address = true
-            end
           end
+        end
 
-          def end_element(name)
-            case name
+        def end_element(name)
+          case name
             when 'Description', 'Protocol'
               @internet_service[name] = value
             when 'Enabled'
@@ -48,7 +47,6 @@ module Fog
               @internet_service[name] = value.to_i
             when 'PublicIpAddress'
               @in_public_ip_address = false
-            end
           end
         end
       end

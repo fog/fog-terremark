@@ -1,17 +1,15 @@
-
 module Fog
   module Parsers
     module Terremark
-      module Shared
-        class GetKeysList < Base
-          def reset
-            @response = { 'Keys' => [] }
-            @key = {}
-          end
+      class GetKeysList < Base
+        def reset
+          @response = { 'Keys' => [] }
+          @key = {}
+        end
 
-          def start_element(name, attributes)
-            super
-            case name
+        def start_element(name, attributes)
+          super
+          case name
             when 'Id', 'Href', 'Name', 'IsDefault','FingerPrint'
               data = extract_attributes(attributes)
               @key[name] = data
@@ -20,17 +18,16 @@ module Fog
             when 'Keys'
               keys_list = extract_attributes(attributes)
               @response['href'] = keys_list['href']
-            end
           end
+        end
 
-          def end_element(name)
-            case name
+        def end_element(name)
+          case name
             when 'Id', 'Href', 'Name', 'IsDefault','FingerPrint'
-            @key[name] = value
+              @key[name] = value
             when 'Key'
               @response['Keys'] << @key
               @key = {}
-            end
           end
         end
       end

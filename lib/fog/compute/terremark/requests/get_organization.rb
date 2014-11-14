@@ -21,7 +21,7 @@ module Fog
           response = request(
               :expects  => 200,
               :method   => 'GET',
-              :parser   => Fog::Parsers::Terremark::Shared::GetOrganization.new,
+              :parser   => Fog::Parsers::Terremark::GetOrganization.new,
               :path     => "org/#{organization_id}"
           )
           response
