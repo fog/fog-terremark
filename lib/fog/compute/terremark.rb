@@ -57,15 +57,6 @@ module Fog
       request :power_on
       request :power_reset
       request :power_shutdown
-
-      def check_shared_options(options)
-        %w{ecloud vcloud}.each do |cloud|
-          cloud_option_keys = options.keys.select { |key| key.to_s =~ /^terremark_#{cloud}_.*/ }
-          unless cloud_option_keys.length == 0 || cloud_option_keys.length == 2
-            raise ArgumentError.new("terremark_#{cloud}_username and terremark_#{cloud}_password required to access teremark")
-          end
-        end
-      end
     end
   end
 end
