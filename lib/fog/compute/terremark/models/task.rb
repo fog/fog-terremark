@@ -37,7 +37,7 @@ module Fog
           @id = new_href.split('/').last.to_i
         end
 
-        def type=(new_type); end
+        def type=(_new_type); end
       end
     end
   end

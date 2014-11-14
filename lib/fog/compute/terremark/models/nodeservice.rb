@@ -33,15 +33,11 @@ module Fog
 
         private
 
+        attr_writer :type, :size, :Links
+
         def href=(new_href)
           self.id = new_href.split('/').last.to_i
         end
-
-        def type=(new_type); @type = new_type; end
-
-        def size=(new_size); @size = new_size; end
-
-        def Links=(new_links); @Links = new_links; end
       end
     end
   end

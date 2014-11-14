@@ -10,7 +10,8 @@ module Fog
         end
 
         def get(task_id)
-          if task_id && task = service.get_task(task_id).body
+          task = service.get_task(task_id).body
+          if task_id && task
             new(task)
           elsif !task_id
             nil
@@ -20,8 +21,9 @@ module Fog
         end
 
         def task_list_id
+          organization = service.get_organization(service.default_organization_id).body
           @task_list_id ||=
-              if service.default_organization_id && organization = service.get_organization(service.default_organization_id).body
+              if service.default_organization_id && organization
                 organization['Links'].find {|link| link['type'] == 'application/vnd.vmware.vcloud.tasksList+xml'}['href'].split('/').last.to_i
               else
                 nil

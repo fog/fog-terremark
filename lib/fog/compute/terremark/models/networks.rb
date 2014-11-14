@@ -12,7 +12,8 @@ module Fog
         end
 
         def get(network_id)
-          if network_id && network = service.get_network(network_id).body
+          network = service.get_network(network_id).body
+          if network_id && network
             new(network)
           elsif !network_id
             nil

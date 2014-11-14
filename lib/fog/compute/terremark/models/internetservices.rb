@@ -10,9 +10,9 @@ module Fog
         end
 
         def get(service_id)
-          data = service.get_internet_services(vdc_id)
+          service.get_internet_services(vdc_id)
           internet_service = services.body["InternetServices"].select {|item| item["Id"] == service_id}
-          new(internetservice)
+          new(internet_service)
         end
 
         def vdc_id

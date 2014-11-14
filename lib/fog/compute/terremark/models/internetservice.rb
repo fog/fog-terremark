@@ -11,7 +11,7 @@ module Fog
         attribute :PublicIpAddress
         attribute :public_ip_address_id
 
-        def destroy(delete_public_ip=true)
+        def destroy(delete_public_ip = true)
           service.delete_internet_service(self.Id)
           service.delete_public_ip(self.PublicIpAddress["Id"]) if delete_public_ip
           true
@@ -19,7 +19,7 @@ module Fog
 
         def save
           requires :Name, :Protocol, :Port
-          if not public_ip_address_id
+          if !public_ip_address_id
             #Create the first internet service and allocate public IP
             data = service.create_internet_service(
                 vdc = service.default_vdc_id,
@@ -49,15 +49,11 @@ module Fog
         end
         private
 
+        attr_writer :type, :size, :Links
+
         def href=(new_href)
           self.id = new_href.split('/').last.to_i
         end
-
-        def type=(new_type); @type = new_type; end
-
-        def size=(new_size); @size = new_size; end
-
-        def Links=(new_links); @Links = new_links; end
       end
     end
   end

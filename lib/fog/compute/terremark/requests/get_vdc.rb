@@ -34,76 +34,108 @@ module Fog
           vdc_id = vdc_id.to_i
           response = Excon::Response.new
 
-          if vdc = self.data[:organizations].map { |org| org[:vdcs] }.flatten.find { |vdc| vdc[:id] == vdc_id }
-
-            body = { "name" => vdc[:name],
-                     "href" => "#{@base_url}/vdc/#{vdc[:id]}",
-                     "StorageCapacity" => {},
-                     "ComputeCapacity" => { "InstantiatedVmsQuota" => {},
-                                            "DeployedVmsQuota" => {},
-                                            "Cpu" => {},
-                                            "Memory" => {} },
-                     "ResourceEntities" => [],
-                     "AvailableNetworks" => [],
-                     "links" => [] }
+          vdc = self.data[:organizations].map { |org| org[:vdcs] }.flatten.find { |vdc| vdc[:id] == vdc_id }
+          if vdc
+            body = {
+                "name" => vdc[:name],
+                "href" => "#{@base_url}/vdc/#{vdc[:id]}",
+                "StorageCapacity" => {},
+                "ComputeCapacity" => {
+                    "InstantiatedVmsQuota" => {},
+                    "DeployedVmsQuota" => {},
+                    "Cpu" => {},
+                    "Memory" => {}
+                },
+                "ResourceEntities" => [],
+                "AvailableNetworks" => [],
+                "links" => []
+            }
 
             case self
               when Fog::Terremark::Ecloud::Mock
                 body["StorageCapacity"] = { "Units" => "bytes * 10^9" }
                 vdc[:storage].each { |k,v| body["StorageCapacity"][k.to_s.capitalize] = v.to_s }
 
-                body["ComputeCapacity"] = { "InstantiatedVmsQuota" => {"Limit" => "-1", "Used" => "-1"},
-                                            "DeployedVmsQuota" => {"Limit" => "-1", "Used" => "-1"},
-                                            "Cpu" => { "Units" => "hz * 10^6" },
-                                            "Memory" => { "Units" => "bytes * 2^20" } }
+                body["ComputeCapacity"] = {
+                    "InstantiatedVmsQuota" => {
+                        "Limit" => "-1",
+                        "Used" => "-1"
+                    },
+                    "DeployedVmsQuota" => {
+                        "Limit" => "-1",
+                        "Used" => "-1"
+                    },
+                    "Cpu" => {
+                        "Units" => "hz * 10^6"
+                    },
+                    "Memory" => {
+                        "Units" => "bytes * 2^20"
+                    }
+                }
 
                 [:cpu, :memory].each do |key|
                   vdc[key].each { |k,v| body["ComputeCapacity"][key.to_s.capitalize][k.to_s.capitalize] = v.to_s }
                 end
 
-                body["links"] << { "name" => "Public IPs",
-                                   "href" => "#{@base_url}/extensions/vdc/#{vdc[:id]}/publicIps",
-                                   "rel"  => "down",
-                                   "type" => "application/vnd.tmrk.ecloud.publicIpsList+xml" }
+                body["links"] << {
+                    "name" => "Public IPs",
+                    "href" => "#{@base_url}/extensions/vdc/#{vdc[:id]}/publicIps",
+                    "rel"  => "down",
+                    "type" => "application/vnd.tmrk.ecloud.publicIpsList+xml"
+                }
 
-                body["links"] << { "name" => "Internet Services",
-                                   "href" => "#{@base_url}/extensions/vdc/#{vdc[:id]}/internetServices",
-                                   "rel"  => "down",
-                                   "type" => "application/vnd.tmrk.ecloud.internetServicesList+xml" }
+                body["links"] << {
+                    "name" => "Internet Services",
+                    "href" => "#{@base_url}/extensions/vdc/#{vdc[:id]}/internetServices",
+                    "rel"  => "down",
+                    "type" => "application/vnd.tmrk.ecloud.internetServicesList+xml"
+                }
 
-                body["links"] << { "name" => "Firewall Access List",
-                                   "href" => "#{@base_url}/extensions/vdc/#{vdc[:id]}/firewallAcls",
-                                   "rel"  => "down",
-                                   "type" => "application/vnd.tmrk.ecloud.firewallAclsList+xml" }
+                body["links"] << {
+                    "name" => "Firewall Access List",
+                    "href" => "#{@base_url}/extensions/vdc/#{vdc[:id]}/firewallAcls",
+                    "rel"  => "down",
+                    "type" => "application/vnd.tmrk.ecloud.firewallAclsList+xml"
+                }
 
               when Fog::Terremark::Vcloud::Mock
-                body["links"] << { "name" => "Public IPs",
-                                   "href" => "#{@base_url}/vdc/#{vdc[:id]}/publicIps",
-                                   "rel"  => "down",
-                                   "type" => "application/xml" }
+                body["links"] << {
+                    "name" => "Public IPs",
+                    "href" => "#{@base_url}/vdc/#{vdc[:id]}/publicIps",
+                    "rel"  => "down",
+                    "type" => "application/xml"
+                }
 
-                body["links"] << { "name" => "Internet Services",
-                                   "href" => "#{@base_url}/vdc/#{vdc[:id]}/internetServices",
-                                   "rel"  => "down",
-                                   "type" => "application/xml" }
+                body["links"] << {
+                    "name" => "Internet Services",
+                    "href" => "#{@base_url}/vdc/#{vdc[:id]}/internetServices",
+                    "rel"  => "down",
+                    "type" => "application/xml"
+                }
             end
 
             vdc[:vms].each do |vm|
-              body["ResourceEntities"] << { "name" => vm[:name],
-                                            "href" => "#{@base_url}/vapp/#{vm[:id]}",
-                                            "type" => "application/vnd.vmware.vcloud.vApp+xml" }
+              body["ResourceEntities"] << {
+                  "name" => vm[:name],
+                  "href" => "#{@base_url}/vapp/#{vm[:id]}",
+                  "type" => "application/vnd.vmware.vcloud.vApp+xml"
+              }
             end
 
             vdc[:networks].each do |network|
-              body["AvailableNetworks"] << { "name" => network[:name],
-                                             "href" => "#{@base_url}/network/#{network[:id]}",
-                                             "type" => "application/vnd.vmware.vcloud.network+xml" }
+              body["AvailableNetworks"] << {
+                  "name" => network[:name],
+                  "href" => "#{@base_url}/network/#{network[:id]}",
+                  "type" => "application/vnd.vmware.vcloud.network+xml"
+              }
             end
 
-            body["links"] << { "name" => vdc[:name],
-                               "href" => "#{@base_url}/vdc/#{vdc[:id]}/catalog",
-                               "rel"  => "down",
-                               "type" => "application/vnd.vmware.vcloud.catalog+xml" }
+            body["links"] << {
+                "name" => vdc[:name],
+                "href" => "#{@base_url}/vdc/#{vdc[:id]}/catalog",
+                "rel"  => "down",
+                "type" => "application/vnd.vmware.vcloud.catalog+xml"
+            }
 
             response.status = 200
             response.body = body

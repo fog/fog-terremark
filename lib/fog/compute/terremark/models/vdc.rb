@@ -8,6 +8,7 @@ module Fog
         attribute :ResourceEntities
         attribute :AvailableNetworks
         attribute :links
+
         def networks
           service.networks(:vdc_id => id)
         end
@@ -29,9 +30,9 @@ module Fog
           self.id = new_href.split('/').last.to_i
         end
 
-        def type=(new_type); end
+        def type=(_new_type); end
 
-        def rel=(new_rel); end
+        def rel=(_new_rel); end
       end
     end
   end

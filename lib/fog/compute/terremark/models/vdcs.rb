@@ -22,7 +22,7 @@ module Fog
         end
 
         def organization_id
-          @vdc_id ||= service.default_organization_id
+          @organization_id ||= service.default_organization_id
         end
 
         private

@@ -19,12 +19,8 @@ module Fog
         # * 'type'<~String> - type of item
         # * 'status'<~String> - 0(pending) --> 2(off) -->4(on)
         def instantiate_vapp_template(name, vapp_template, options = {})
-          unless name.length < 15
-            raise ArgumentError.new('Name must be fewer than 15 characters')
-          end
-          unless vapp_template
-            raise ArgumentError.new("vApp Image Template is a compulsary parameter")
-          end
+          raise ArgumentError.new('Name must be fewer than 15 characters') unless name.length < 15
+          raise ArgumentError.new("vApp Image Template is a compulsary parameter") unless vapp_template
           options['ssh_key_fingerprint'] ||= default_ssh_key["FingerPrint"]
           options['cpus'] ||= 1
           options['memory'] ||= 512

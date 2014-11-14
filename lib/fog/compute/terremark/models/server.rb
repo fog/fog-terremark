@@ -31,7 +31,7 @@ module Fog
             when VAppStatus::BEING_CREATED, VAppStatus::BEING_DEPLOYED
               return false
             when VAppStatus::POWERED_ON
-              data = service.power_off(self.id).body
+              service.power_off(self.id).body
               wait_for { off? }
           end
           #Failsafe .. Always check if we are ready
@@ -49,7 +49,7 @@ module Fog
         end
 
         def internet_services
-          @internet_services ||= service.internetservices.all.select {|item| item.Name == self.name}
+          @internet_services ||= service.internetservices.all.select { |item| item.Name == self.name }
         end
 
         def delete_internet_services
@@ -79,7 +79,7 @@ module Fog
           status == VAppStatus::POWERED_OFF
         end
 
-        def power_on(options = {})
+        def power_on(_options = {})
           requires :id
           begin
             service.power_on(id)
@@ -190,15 +190,11 @@ module Fog
 
         private
 
+        attr_writer :type, :size, :Links
+
         def href=(new_href)
           self.id = new_href.split('/').last.to_i
         end
-
-        def type=(new_type); @type = new_type; end
-
-        def size=(new_size); @size = new_size; end
-
-        def Links=(new_links); @Links = new_links; end
       end
     end
   end
