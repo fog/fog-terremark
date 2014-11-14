@@ -2,8 +2,6 @@ module Fog
   module Parsers
     module Terremark
       class GetOrganizations < Base
-        # include Fog::Terremark::Shared::Parser
-
         def reset
           @response = { 'OrgList' => [] }
         end

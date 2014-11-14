@@ -50,10 +50,10 @@ module Fog
 
             response.status = 200
             response.body = body
-            response.headers = Fog::Terremark::Shared::Mock.headers(response.body, "application/vnd.vmware.vcloud.org+xml")
+            response.headers = Fog::Compute::Terremark::Mock.headers(response.body, "application/vnd.vmware.vcloud.org+xml")
           else
-            response.status = Fog::Terremark::Shared::Mock.unathorized_status
-            response.headers = Fog::Terremark::Shared::Mock.error_headers
+            response.status = Fog::Compute::Terremark::Mock.unathorized_status
+            response.headers = Fog::Compute::Terremark::Mock.error_headers
           end
 
           response
@@ -62,18 +62,25 @@ module Fog
         private
 
         def _vdc_links(vdc)
-          [{ "name" => vdc[:name],
-             "href" => "#{@base_url}/vdc/#{vdc[:id]}",
-             "rel" => "down",
-             "type" => "application/vnd.vmware.vcloud.vdc+xml" },
-           { "name" => "#{vdc[:name]} Catalog",
-             "href" => "#{@base_url}/vdc/#{vdc[:id]}/catalog",
-             "rel" => "down",
-             "type" => "application/vnd.vmware.vcloud.catalog+xml" },
-           { "name" => "#{vdc[:name]} Tasks List",
-             "href" => "#{@base_url}/vdc/#{vdc[:id]}/taskslist",
-             "rel" => "down",
-             "type" => "application/vnd.vmware.vcloud.tasksList+xml" }
+          [
+              {
+                  "name" => vdc[:name],
+                  "href" => "#{@base_url}/vdc/#{vdc[:id]}",
+                  "rel" => "down",
+                  "type" => "application/vnd.vmware.vcloud.vdc+xml"
+              },
+              {
+                  "name" => "#{vdc[:name]} Catalog",
+                  "href" => "#{@base_url}/vdc/#{vdc[:id]}/catalog",
+                  "rel" => "down",
+                  "type" => "application/vnd.vmware.vcloud.catalog+xml"
+              },
+              {
+                  "name" => "#{vdc[:name]} Tasks List",
+                  "href" => "#{@base_url}/vdc/#{vdc[:id]}/taskslist",
+                  "rel" => "down",
+                  "type" => "application/vnd.vmware.vcloud.tasksList+xml"
+              }
           ]
         end
       end

@@ -47,7 +47,7 @@ module Fog
             end
             response.status = 200
             response.body = body
-            response.headers = Fog::Terremark::Shared::Mock.headers(response.body,
+            response.headers = Fog::Compute::Terremark::Mock.headers(response.body,
                                                                     case self
                                                                       when Fog::Terremark::Ecloud::Mock
                                                                         "application/vnd.tmrk.ecloud.publicIpsList+xml"
@@ -56,8 +56,8 @@ module Fog
                                                                     end
             )
           else
-            response.status = Fog::Terremark::Shared::Mock.unathorized_status
-            response.headers = Fog::Terremark::Shared::Mock.error_headers
+            response.status = Fog::Compute::Terremark::Mock.unathorized_status
+            response.headers = Fog::Compute::Terremark::Mock.error_headers
           end
 
           response
