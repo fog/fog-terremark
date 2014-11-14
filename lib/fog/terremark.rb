@@ -4,10 +4,11 @@ require 'fog/xml'
 
 module Fog
   module Terremark
-    autoload :Shared, 'fog/terremark/shared'
     autoload :Vcloud, 'fog/terremark/vcloud'
+  end
 
-    VCLOUD_OPTIONS = [:terremark_vcloud_username, :terremark_vcloud_password]
+  module Compute
+    autoload :Terremark, 'fog/compute/terremark'
   end
 
   module Parsers
