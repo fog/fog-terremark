@@ -1,6 +1,6 @@
 module Fog
   module Compute
-  module Terremark
+    module Terremark
       module Parser
         def parse(data)
           case data['type']
