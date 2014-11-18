@@ -1,6 +1,6 @@
 module Fog
   module Compute
-    module Terremark
+    class Terremark
       class Address < Fog::Model
         identity :id
 

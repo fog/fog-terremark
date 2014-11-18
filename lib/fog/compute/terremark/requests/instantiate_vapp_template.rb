@@ -1,7 +1,7 @@
 module Fog
   module Compute
-    module Terremark
-      module Real
+    class Terremark
+      class Real
         # Instatiate a vapp template
         #
         # ==== Parameters

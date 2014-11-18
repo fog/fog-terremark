@@ -1,6 +1,6 @@
 module Fog
   module Compute
-    module Terremark
+    class Terremark
       class NodeService < Fog::Model
         identity :Id
         attribute :Name

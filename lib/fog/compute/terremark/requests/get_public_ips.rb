@@ -1,7 +1,7 @@
 module Fog
   module Compute
-    module Terremark
-      module Real
+    class Terremark
+      class Real
         # Get list of public ips
         #
         # ==== Parameters
@@ -27,7 +27,7 @@ module Fog
         end
       end
 
-      module Mock
+      class Mock
         def get_public_ips(vdc_id)
           vdc_id = vdc_id.to_i
           response = Excon::Response.new

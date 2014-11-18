@@ -1,6 +1,6 @@
 module Fog
   module Compute
-    module Terremark
+    class Terremark
       class Networks < Fog::Collection
         model Fog::Compute::Terremark::Network
 

@@ -1,6 +1,6 @@
 module Fog
   module Compute
-    module Terremark
+    class Terremark
       class Vdc < Fog::Model
         identity :id
 

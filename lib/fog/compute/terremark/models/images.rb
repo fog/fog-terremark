@@ -1,6 +1,6 @@
 module Fog
   module Compute
-    module Terremark
+    class Terremark
       class Images < Fog::Collection
         model Fog::Compute::Terremark::Image
 

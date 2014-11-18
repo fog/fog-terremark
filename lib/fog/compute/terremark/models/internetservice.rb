@@ -1,6 +1,6 @@
 module Fog
   module Compute
-    module Terremark
+    class Terremark
       class InternetService < Fog::Model
         identity :Id
 

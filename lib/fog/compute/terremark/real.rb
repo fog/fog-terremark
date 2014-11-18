@@ -1,8 +1,13 @@
 module Fog
   module Compute
-    module Terremark
-      module Real
+    class Terremark
+      class Real
         include Common
+
+        def initialize(options = {})
+          @terremark_username     = options[:terremark_vcloud_username]
+          @terremark_password     = options[:terremark_vcloud_password]
+        end
 
         private
 

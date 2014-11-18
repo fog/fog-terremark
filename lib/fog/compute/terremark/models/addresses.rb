@@ -1,6 +1,6 @@
 module Fog
   module Compute
-    module Terremark
+    class Terremark
       class Addresses < Fog::Collection
         model Fog::Compute::Terremark::Address
 

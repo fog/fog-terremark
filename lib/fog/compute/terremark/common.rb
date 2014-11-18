@@ -1,6 +1,6 @@
 module Fog
   module Compute
-    module Terremark
+    class Terremark
       module Common
         def default_organization_id
           @default_organization_id ||= begin

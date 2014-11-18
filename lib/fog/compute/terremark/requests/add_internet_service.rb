@@ -1,7 +1,7 @@
 module Fog
   module Compute
-    module Terremark
-      module Real
+    class Terremark
+      class Real
         # Reserve requested resources and deploy vApp
         #
         # ==== Parameters

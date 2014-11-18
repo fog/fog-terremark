@@ -1,7 +1,7 @@
 module Fog
   module Compute
-    module Terremark
-      module Mock
+    class Terremark
+      class Mock
         include Common
 
         def self.mock_data

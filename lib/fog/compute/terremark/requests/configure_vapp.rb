@@ -1,7 +1,7 @@
 module Fog
   module Compute
-    module Terremark
-      module Real
+    class Terremark
+      class Real
         def configure_vapp(vapp_id, vapp_name, options = {})
           items = ""
           vapp_uri = [@host, @path, "vApp", vapp_id.to_s].join("/")

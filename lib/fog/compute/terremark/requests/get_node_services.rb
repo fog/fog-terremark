@@ -1,9 +1,7 @@
 module Fog
   module Compute
-    module Terremark
-      module Real
-        require 'fog/terremark/parsers/terremark/get_node_services'
-
+    class Terremark
+      class Real
         # Get a list of all internet services for a vdc
         #
         # ==== Parameters

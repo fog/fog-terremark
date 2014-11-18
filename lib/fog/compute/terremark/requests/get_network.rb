@@ -1,7 +1,7 @@
 module Fog
   module Compute
-    module Terremark
-      module Real
+    class Terremark
+      class Real
         # Get details for a Network
         #
         # ==== Parameters
@@ -21,7 +21,7 @@ module Fog
         end
       end
 
-      module Mock
+      class Mock
         def get_network(network_id)
           network_id = network_id.to_i
           response = Excon::Response.new

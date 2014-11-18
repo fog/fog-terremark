@@ -1,7 +1,7 @@
 module Fog
   module Compute
-    module Terremark
-      module Real
+    class Terremark
+      class Real
         # Get list of organizations
         #
         # ==== Returns
@@ -25,7 +25,7 @@ module Fog
         end
       end
 
-      module Mock
+      class Mock
         def get_organizations
           response = Excon::Response.new
           org_list = self.data[:organizations].map do |organization|

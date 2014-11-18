@@ -1,6 +1,6 @@
 module Fog
   module Compute
-    module Terremark
+    class Terremark
       class Server < Fog::Model
         module VAppStatus
           BEING_CREATED = "0"
