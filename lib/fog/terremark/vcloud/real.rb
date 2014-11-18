@@ -1,6 +1,6 @@
 module Fog
   module Terremark
-    module Vcloud
+    class Vcloud
       class Real < Fog::Compute::Terremark::Real
         def initialize(options={})
           @terremark_password = options[:terremark_vcloud_password]

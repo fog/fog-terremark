@@ -1,6 +1,6 @@
 module Fog
   module Terremark
-    module Vcloud
+    class Vcloud
       class Mock < Fog::Compute::Terremark::Mock
         def initialize(option = {})
           super
