@@ -12,17 +12,19 @@ module Fog
         private
 
         def auth_token
+          credentials = "#{@terremark_username}:#{@terremark_password}"
+          encoded_credentials = Base64.strict_encode64(credentials)
           response = @connection.request({
-                                             :expects   => 200,
-                                             :headers   => {
-                                                 'Authorization' => "Basic #{Base64.strict_encode64("#{@terremark_username}:#{@terremark_password}")}",
-                                                 'Content-Type'  => "application/vnd.vmware.vcloud.orgList+xml"
-                                             },
-                                             :host      => @host,
-                                             :method    => 'POST',
-                                             :parser    => Fog::Parsers::Terremark::GetOrganizations.new,
-                                             :path      => "#{@path}/login"
-                                         })
+            :expects   => 200,
+            :headers   => {
+              "Authorization" => "Basic #{encoded_credentials}",
+              "Content-Type"  => "application/vnd.vmware.vcloud.orgList+xml"
+            },
+            :host      => @host,
+            :method    => 'POST',
+            :parser    => Fog::Parsers::Terremark::GetOrganizations.new,
+            :path      => "#{@path}/login"
+          })
           response.headers['Set-Cookie']
         end
 

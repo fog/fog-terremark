@@ -11,17 +11,20 @@ module Fog
         #     * 'links'<~Array> - An array of links to entities in the organization
         #     * 'name'<~String> - Name of organization
         def get_organizations
+          credentials = "#{@terremark_username}:#{@terremark_password}"
+          encoded_credentials = Base64.strict_encode64(credentials)
           request({
-                      :expects  => 200,
-                      :headers  => {
-                          'Authorization' => "Basic #{Base64.strict_encode64("#{@terremark_username}:#{@terremark_password}")}",
-                          # Terremark said they're going to remove passing in the Content-Type to login in a future release
-                          'Content-Type'  => "application/vnd.vmware.vcloud.orgList+xml"
-                      },
-                      :method   => 'POST',
-                      :parser   => Fog::Parsers::Terremark::GetOrganizations.new,
-                      :path     => 'login'
-                  })
+            :expects => 200,
+            :headers => {
+              "Authorization" => "Basic #{encoded_credentials}",
+              # Terremark said they're going to remove passing in the 
+              # Content-Type to login in a future release
+              "Content-Type" => "application/vnd.vmware.vcloud.orgList+xml"
+            },
+            :method => "POST",
+            :parser => Fog::Parsers::Terremark::GetOrganizations.new,
+            :path => "login"
+          })
         end
       end
 
