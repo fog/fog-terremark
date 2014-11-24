@@ -9,24 +9,13 @@ type="application/vnd.vmware.vCloud.org+xml" name="Org Name"/>
 
 describe Fog::Terremark::Vcloud do
 
-  before do
-    Excon.defaults[:mock] = true
-    Excon.stub(
-      {:method => :post, :path => '/api/v0.8a-ext1.6/login'},
-      {
-        :status => 200,
-        :headers => {
-          'Set-Cookie' => 'test-cookie',
-        },
-        :body => mock_org_list
-      }
-    )
-  end
-
   it 'gets a login token' do
-    service = Fog::Terremark::Vcloud.new(
+    VCR.use_cassette('get_login_token') do
+      service = Fog::Terremark::Vcloud.new(
         :terremark_vcloud_username => 'test@example.com',
         :terremark_vcloud_password => '123456')
-    service.send(:auth_token)
+      service.send(:auth_token)
+    end
   end
+
 end
