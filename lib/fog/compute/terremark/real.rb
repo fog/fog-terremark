@@ -15,7 +15,7 @@ module Fog
           response = @connection.request({
                                              :expects   => 200,
                                              :headers   => {
-                                                 'Authorization' => "Basic #{Base64.encode64("#{@terremark_username}:#{@terremark_password}").chomp!}",
+                                                 'Authorization' => "Basic #{Base64.strict_encode64("#{@terremark_username}:#{@terremark_password}")}",
                                                  'Content-Type'  => "application/vnd.vmware.vcloud.orgList+xml"
                                              },
                                              :host      => @host,
