@@ -1,6 +1,7 @@
 module Fog
   module Compute
     class Terremark
+      # doc stub
       class Real
         # Get list of organizations
         #
@@ -11,36 +12,33 @@ module Fog
         #     * 'links'<~Array> - An array of links to entities in the organization
         #     * 'name'<~String> - Name of organization
         def get_organizations
-          credentials = "#{@terremark_username}:#{@terremark_password}"
-          encoded_credentials = Base64.strict_encode64(credentials)
-          request({
+          request(
             :expects => 200,
-            :headers => {
-              "Authorization" => "Basic #{encoded_credentials}",
-              # Terremark said they're going to remove passing in the 
-              # Content-Type to login in a future release
-              "Content-Type" => "application/vnd.vmware.vcloud.orgList+xml"
-            },
+            :headers => auth_headers,
             :method => "POST",
             :parser => Fog::Parsers::Terremark::GetOrganizations.new,
             :path => "login"
-          })
+          )
         end
       end
 
+      # doc stub
       class Mock
         def get_organizations
           response = Excon::Response.new
-          org_list = self.data[:organizations].map do |organization|
+          response.body = { "OrgList" => org_fixture }
+          response.status = 200
+          response.headers = Fog::Compute::Terremark::Mock.headers(response.body, "application/vnd.vmware.vcloud.orgList+xml")
+          response
+        end
+
+        def org_fixture
+          data[:organizations].map do |organization|
             { "name" => organization[:info][:name],
               "href" => "#{@base_url}/org/#{organization[:info][:id]}",
               "type" => "application/vnd.vmware.vcloud.org+xml"
             }
           end
-          response.body = { "OrgList" => org_list }
-          response.status = 200
-          response.headers = Fog::Compute::Terremark::Mock.headers(response.body, "application/vnd.vmware.vcloud.orgList+xml")
-          response
         end
       end
     end
