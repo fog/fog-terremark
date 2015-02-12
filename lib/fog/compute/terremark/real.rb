@@ -26,7 +26,9 @@ module Fog
 
         def auth_headers
           credentials = "#{@terremark_username}:#{@terremark_password}"
-          encoded_credentials = Base64.strict_encode64(credentials)
+          encoded_credentials = Base64.encode64(credentials)
+          # remove newlines because strict_encode64 is not compatible with 1.8
+          encoded_credentials = encoded_credentials.gsub(/\n/, "")
           {
             "Authorization" => "Basic #{encoded_credentials}",
             # Terremark said they're going to remove passing in the
