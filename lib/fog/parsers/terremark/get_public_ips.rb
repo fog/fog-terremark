@@ -4,18 +4,18 @@ module Fog
       class GetPublicIps< Base
         def reset
           @ip_address = {}
-          @response = { 'PublicIpAddresses' => [] }
+          @response = { "PublicIpAddresses" => [] }
         end
 
         def end_element(name)
           case name
-            when 'Href', 'Name'
-              @ip_address[name.downcase] = value
-            when 'Id'
-              @ip_address['id'] = value.to_i
-            when 'PublicIPAddress'
-              @response['PublicIpAddresses'] << @ip_address
-              @ip_address = {}
+          when "Href", "Name"
+            @ip_address[name.downcase] = value
+          when "Id"
+            @ip_address["id"] = value.to_i
+          when "PublicIPAddress"
+            @response["PublicIpAddresses"] << @ip_address
+            @ip_address = {}
           end
         end
       end

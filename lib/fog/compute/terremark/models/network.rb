@@ -13,13 +13,13 @@ module Fog
 
         def ips
           #Until there is a real models for these ?
-          service.get_network_ips(id).body['IpAddresses']
+          service.get_network_ips(id).body["IpAddresses"]
         end
 
         private
 
         def href=(new_href)
-          self.id = new_href.split('/').last.to_i
+          self.id = new_href.split("/").last.to_i
         end
 
         def type=(_new_type); end

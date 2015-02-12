@@ -10,19 +10,19 @@ module Fog
         # ==== Returns
         # * response<~Excon::Response>:
         #   * body<~Hash>:
-        #     * 'description'<~String> - Description of organization
-        #     * 'links'<~Array> - An array of links to entities in the organization
-        #       * 'href'<~String> - location of link
-        #       * 'name'<~String> - name of link
-        #       * 'rel'<~String> - action to perform
-        #       * 'type'<~String> - type of link
-        #     * 'name'<~String> - Name of organization
+        #     * "description"<~String> - Description of organization
+        #     * "links"<~Array> - An array of links to entities in the organization
+        #       * "href"<~String> - location of link
+        #       * "name"<~String> - name of link
+        #       * "rel"<~String> - action to perform
+        #       * "type"<~String> - type of link
+        #     * "name"<~String> - Name of organization
         def get_organization(organization_id)
           response = request(
-              :expects  => 200,
-              :method   => 'GET',
-              :parser   => Fog::Parsers::Terremark::GetOrganization.new,
-              :path     => "org/#{organization_id}"
+            :expects  => 200,
+            :method   => "GET",
+            :parser   => Fog::Parsers::Terremark::GetOrganization.new,
+            :path     => "org/#{organization_id}"
           )
           response
         end
@@ -33,19 +33,19 @@ module Fog
           organization_id = organization_id.to_i
           response = Excon::Response.new
 
-          if org = self.data[:organizations].find { |org| org[:info][:id] == organization_id }
+          if org = data[:organizations].detect { |attributes| attributes[:info][:id] == organization_id }
 
             body = { "name" => org[:info][:name],
                      "href" => "#{@base_url}/org/#{org[:info][:id]}",
                      "Links" => [] }
 
             body["Links"] = case self
-                              when Fog::Terremark::Vcloud::Mock
-                                _vdc_links(org[:vdcs][0])
-                              when Fog::Terremark::Ecloud::Mock
-                                org[:vdcs].map do |vdc|
-                                  _vdc_links(vdc)
-                                end.flatten
+                            when Fog::Terremark::Vcloud::Mock
+                              _vdc_links(org[:vdcs][0])
+                            when Fog::Terremark::Ecloud::Mock
+                              org[:vdcs].map do |vdc|
+                                _vdc_links(vdc)
+                              end.flatten
                             end
 
             response.status = 200

@@ -10,20 +10,20 @@ module Fog
         # ==== Returns
         # * response<~Excon::Response>:
         #   * body<~Hash>:
-        #     * 'InternetServices'<~Array>
-        #       * 'id'<~String> => id of the internet service
-        #       * 'name'<~String> => name of service
-        #       * 'PublicIPAddress'<~Hash>
-        #       *   'Id'<~String> => id of the public IP
-        #       *   'name'<~String> => actual ip address
+        #     * "InternetServices"<~Array>
+        #       * "id"<~String> => id of the internet service
+        #       * "name"<~String> => name of service
+        #       * "PublicIPAddress"<~Hash>
+        #       *   "Id"<~String> => id of the public IP
+        #       *   "name"<~String> => actual ip address
         #
         def get_internet_services(vdc_id)
           request(
-              :expects  => 200,
-              :method   => 'GET',
-              :parser   => Fog::Parsers::Terremark::GetInternetServices.new,
-              :path     => "api/extensions/v1.6/vdc/#{vdc_id}/internetServices",
-              :override_path => true
+            :expects  => 200,
+            :method   => "GET",
+            :parser   => Fog::Parsers::Terremark::GetInternetServices.new,
+            :path     => "api/extensions/v1.6/vdc/#{vdc_id}/internetServices",
+            :override_path => true
           )
         end
       end

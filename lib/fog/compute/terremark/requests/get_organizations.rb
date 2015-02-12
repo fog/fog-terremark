@@ -8,9 +8,9 @@ module Fog
         # ==== Returns
         # * response<~Excon::Response>:
         #   * body<~Array>:
-        #     * 'description'<~String> - Description of organization
-        #     * 'links'<~Array> - An array of links to entities in the organization
-        #     * 'name'<~String> - Name of organization
+        #     * "description"<~String> - Description of organization
+        #     * "links"<~Array> - An array of links to entities in the organization
+        #     * "name"<~String> - Name of organization
         def organizations
           request(
             :expects => 200,
@@ -34,7 +34,8 @@ module Fog
 
         def org_fixture
           data[:organizations].map do |organization|
-            { "name" => organization[:info][:name],
+            {
+              "name" => organization[:info][:name],
               "href" => "#{@base_url}/org/#{organization[:info][:id]}",
               "type" => "application/vnd.vmware.vcloud.org+xml"
             }

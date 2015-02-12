@@ -121,13 +121,13 @@ module Fog
         end
 
         def initialize(_options={})
-          self.class.instance_eval '
+          self.class.instance_eval "
             def self.data
               @data ||= Hash.new do |hash, key|
                 hash[key] = Fog::Compute::Terremark::Mock.mock_data
               end
-            end'
-          self.class.instance_eval '
+            end"
+          self.class.instance_eval "
             def self.reset
               @data = nil
             end
@@ -136,7 +136,7 @@ module Fog
               for key in [*keys]
                 data.delete(key)
               end
-            end'
+            end"
         end
       end
     end

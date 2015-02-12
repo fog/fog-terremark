@@ -13,21 +13,21 @@ module Fog
         # ==== Returns
         # * response<~Excon::Response>:
         # * body<~Hash>:
-        # * 'Links;<~Array> (e.g. up to vdc)
-        # * 'href'<~String> Link to the resulting vapp
-        # * 'name'<~String> - name of item
-        # * 'type'<~String> - type of item
-        # * 'status'<~String> - 0(pending) --> 2(off) -->4(on)
+        # * "Links;<~Array> (e.g. up to vdc)
+        # * "href"<~String> Link to the resulting vapp
+        # * "name"<~String> - name of item
+        # * "type"<~String> - type of item
+        # * "status"<~String> - 0(pending) --> 2(off) -->4(on)
         def instantiate_vapp_template(name, vapp_template, options = {})
-          raise ArgumentError.new('Name must be fewer than 15 characters') unless name.length < 15
+          raise ArgumentError.new("Name must be fewer than 15 characters") unless name.length < 15
           raise ArgumentError.new("vApp Image Template is a compulsary parameter") unless vapp_template
-          options['ssh_key_fingerprint'] ||= default_ssh_key["FingerPrint"]
-          options['cpus'] ||= 1
-          options['memory'] ||= 512
-          options['network_id'] ||= default_network_id
-          options['vdc_id'] ||= default_vdc_id
-          options['primary_dns'] ||= '208.67.222.222'
-          options['secondary_dns'] ||= '208.67.220.220'
+          options["ssh_key_fingerprint"] ||= default_ssh_key["FingerPrint"]
+          options["cpus"] ||= 1
+          options["memory"] ||= 512
+          options["network_id"] ||= default_network_id
+          options["vdc_id"] ||= default_vdc_id
+          options["primary_dns"] ||= "208.67.222.222"
+          options["secondary_dns"] ||= "208.67.220.220"
 
           data = <<-DATA
 <?xml version="1.0" encoding="UTF-8"?>
@@ -63,8 +63,8 @@ module Fog
           request(
               :body => data,
               :expects => 200,
-              :headers => { 'Content-Type' => 'application/vnd.vmware.vcloud.instantiateVAppTemplateParams+xml' },
-              :method => 'POST',
+              :headers => { "Content-Type" => "application/vnd.vmware.vcloud.instantiateVAppTemplateParams+xml" },
+              :method => "POST",
               :parser => Fog::Parsers::Terremark::InstantiateVappTemplate.new,
               :path => "vdc/#{options['vdc_id']}/action/instantiatevAppTemplate"
           )

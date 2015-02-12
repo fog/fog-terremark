@@ -9,12 +9,12 @@ module Fog
         def start_element(name, attributes)
           super
           case name
-            when 'Owner', 'Result', 'Link', 'Error'
-              data = extract_attributes(attributes)
-              @response[name] = data
-            when 'Task'
-              task = extract_attributes(attributes)
-              @response.merge!(task.reject {|key,value| !['endTime', 'href', 'startTime', 'status', 'type'].include?(key)})
+          when "Owner", "Result", "Link", "Error"
+            data = extract_attributes(attributes)
+            @response[name] = data
+          when "Task"
+            task = extract_attributes(attributes)
+            @response.merge!(task.reject { |key, _value| !["endTime", "href", "startTime", "status", "type"].include?(key) })
           end
         end
       end

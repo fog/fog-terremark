@@ -5,8 +5,8 @@ module Fog
         model Fog::Compute::Terremark::Vdc
 
         def all
-          data = service.get_organization(organization_id).body['Links'].select do |entity|
-            entity['type'] == 'application/vnd.vmware.vcloud.vdc+xml'
+          data = service.get_organization(organization_id).body["Links"].select do |entity|
+            entity["type"] == "application/vnd.vmware.vcloud.vdc+xml"
           end
           load(data)
         end

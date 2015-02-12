@@ -9,10 +9,10 @@ module Fog
         #
         def delete_internet_service(internet_service_id)
           request(
-              :expects  => 200,
-              :method   => 'DELETE',
-              :path     => "api/extensions/v1.6/internetService/#{internet_service_id}",
-              :override_path => true
+            :expects  => 200,
+            :method   => "DELETE",
+            :path     => "api/extensions/v1.6/internetService/#{internet_service_id}",
+            :override_path => true
           )
         end
       end

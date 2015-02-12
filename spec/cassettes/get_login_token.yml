@@ -5,7 +5,7 @@ http_interactions:
     uri: https://services.vcloudexpress.terremark.com/api/v0.8a-ext1.6/login
     body:
       encoding: US-ASCII
-      string: ''
+      string: ""
     headers:
       User-Agent:
       - fog-core/1.25.0
@@ -21,7 +21,7 @@ http_interactions:
       Cache-Control:
       - private
       Content-Length:
-      - '328'
+      - "328"
       Content-Type:
       - application/vnd.vmware.vcloud.orgList+xml
       Server:

@@ -10,18 +10,18 @@ module Fog
         # ==== Returns
         # * response<~Excon::Response>:
         #   * body<~Hash>:
-        #     * 'CatalogItems'<~Array>
-        #       * 'href'<~String> - linke to item
-        #       * 'name'<~String> - name of item
-        #       * 'type'<~String> - type of item
-        #     * 'description'<~String> - Description of catalog
-        #     * 'name'<~String> - Name of catalog
+        #     * "CatalogItems"<~Array>
+        #       * "href"<~String> - linke to item
+        #       * "name"<~String> - name of item
+        #       * "type"<~String> - type of item
+        #     * "description"<~String> - Description of catalog
+        #     * "name"<~String> - Name of catalog
         def get_tasks_list(tasks_list_id)
           request(
-              :expects  => 200,
-              :method   => 'GET',
-              :parser   => Fog::Parsers::Terremark::GetTasksList.new,
-              :path     => "tasksList/#{tasks_list_id}"
+            :expects  => 200,
+            :method   => "GET",
+            :parser   => Fog::Parsers::Terremark::GetTasksList.new,
+            :path     => "tasksList/#{tasks_list_id}"
           )
         end
       end

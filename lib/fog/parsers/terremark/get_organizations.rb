@@ -3,12 +3,12 @@ module Fog
     module Terremark
       class GetOrganizations < Base
         def reset
-          @response = { 'OrgList' => [] }
+          @response = { "OrgList" => [] }
         end
 
         def start_element(name, attributes)
           super
-          if name == 'Org'
+          if name == "Org"
             organization = extract_attributes(attributes)
             until attributes.empty?
               if attributes.first.is_a?(Array)
@@ -18,7 +18,7 @@ module Fog
                 organization[attributes.shift] = attributes.shift
               end
             end
-            @response['OrgList'] << organization
+            @response["OrgList"] << organization
           end
         end
       end
