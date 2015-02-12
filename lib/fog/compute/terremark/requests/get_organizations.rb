@@ -11,7 +11,7 @@ module Fog
         #     * 'description'<~String> - Description of organization
         #     * 'links'<~Array> - An array of links to entities in the organization
         #     * 'name'<~String> - Name of organization
-        def get_organizations
+        def organizations
           request(
             :expects => 200,
             :headers => auth_headers,
@@ -24,7 +24,7 @@ module Fog
 
       # doc stub
       class Mock
-        def get_organizations
+        def organizations
           response = Excon::Response.new
           response.body = { "OrgList" => org_fixture }
           response.status = 200
