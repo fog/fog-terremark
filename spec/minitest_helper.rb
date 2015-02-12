@@ -1,6 +1,7 @@
-require 'minitest/spec'
-require 'minitest/autorun'
-require 'turn'
+require "minitest/spec"
+require "minitest/autorun"
+require "turn"
+require "vcr"
 
 Turn.config do |c|
   # use one of output formats:
@@ -17,15 +18,21 @@ Turn.config do |c|
   c.natural = true
 end
 
-if ENV['COVERAGE']
-  require 'coveralls'
-  require 'simplecov'
+VCR.configure do |c|
+  c.cassette_library_dir = "spec/cassettes"
+  c.hook_into :excon
+  c.debug_logger = $stderr
+end
+
+if ENV["COVERAGE"]
+  require "coveralls"
+  require "simplecov"
 
   SimpleCov.start do
-    add_filter '/spec/'
+    add_filter "/spec/"
   end
 end
 
-require File.join(File.dirname(__FILE__), '../lib/fog/terremark.rb')
+require File.join(File.dirname(__FILE__), "../lib/fog/terremark.rb")
 
-Coveralls.wear! if ENV['COVERAGE']
+Coveralls.wear! if ENV["COVERAGE"]
