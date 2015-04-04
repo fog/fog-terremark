@@ -17,11 +17,11 @@ module Fog
         def default_vdc_id
           if default_organization_id
             @default_vdc_id ||= begin
-              vdcs = get_organization(default_organization_id).body['Links'].select {|link|
-                link['type'] == 'application/vnd.vmware.vcloud.vdc+xml'
-              }
+              vdcs = get_organization(default_organization_id).body["Links"].select do |link|
+                link["type"] == "application/vnd.vmware.vcloud.vdc+xml"
+              end
               if vdcs.length == 1
-                vdcs.first['href'].split('/').last.to_i
+                vdcs.first["href"].split("/").last.to_i
               else
                 nil
               end
@@ -34,9 +34,9 @@ module Fog
         def default_network_id
           if default_vdc_id
             @default_network_id ||= begin
-              networks = get_vdc(default_vdc_id).body['AvailableNetworks']
+              networks = get_vdc(default_vdc_id).body["AvailableNetworks"]
               if networks.length == 1
-                networks.first['href'].split('/').last.to_i
+                networks.first["href"].split("/").last.to_i
               else
                 nil
               end
@@ -49,9 +49,9 @@ module Fog
         def default_public_ip_id
           if default_vdc_id
             @default_public_ip_id ||= begin
-              ips = get_public_ips(default_vdc_id).body['PublicIpAddresses']
+              ips = get_public_ips(default_vdc_id).body["PublicIpAddresses"]
               if ips.length == 1
-                ips.first['href'].split('/').last.to_i
+                ips.first["href"].split("/").last.to_i
               else
                 nil
               end

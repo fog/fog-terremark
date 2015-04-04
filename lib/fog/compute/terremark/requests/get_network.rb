@@ -13,10 +13,10 @@ module Fog
         #   FIXME
         def get_network(network_id)
           request(
-              :expects  => 200,
-              :method   => 'GET',
-              :parser   => Fog::Parsers::Terremark::Network.new,
-              :path     => "network/#{network_id}"
+            :expects  => 200,
+            :method   => "GET",
+            :parser   => Fog::Parsers::Terremark::Network.new,
+            :path     => "network/#{network_id}"
           )
         end
       end
@@ -40,10 +40,10 @@ module Fog
                      "rel"  => "down",
                      "type" => "application/xml" }
             link["href"] = case self
-                             when Fog::Terremark::Ecloud::Mock
-                               "#{@base_url}/extensions/network/#{network_id}/ips"
-                             when Fog::Terremark::Vcloud::Mock
-                               "#{@base_url}/network/#{network_id}/ipAddresses"
+                           when Fog::Terremark::Ecloud::Mock
+                             "#{@base_url}/extensions/network/#{network_id}/ips"
+                           when Fog::Terremark::Vcloud::Mock
+                             "#{@base_url}/network/#{network_id}/ipAddresses"
                            end
             body["links"] << link
 
@@ -51,10 +51,10 @@ module Fog
             response.body = body
             response.headers = Fog::Compute::Terremark::Mock.headers(response.body,
                                                                     case self
-                                                                      when Fog::Terremark::Ecloud::Mock
-                                                                        "application/vnd.vmware.vcloud.network+xml"
-                                                                      when Fog::Terremark::Vcloud::Mock
-                                                                        "application/xml; charset=utf-8"
+                                                                    when Fog::Terremark::Ecloud::Mock
+                                                                      "application/vnd.vmware.vcloud.network+xml"
+                                                                    when Fog::Terremark::Vcloud::Mock
+                                                                      "application/xml; charset=utf-8"
                                                                     end
             )
           else

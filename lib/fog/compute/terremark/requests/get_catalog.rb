@@ -10,18 +10,18 @@ module Fog
         # ==== Returns
         # * response<~Excon::Response>:
         #   * body<~Hash>:
-        #     * 'CatalogItems'<~Array>
-        #       * 'href'<~String> - linke to item
-        #       * 'name'<~String> - name of item
-        #       * 'type'<~String> - type of item
-        #     * 'description'<~String> - Description of catalog
-        #     * 'name'<~String> - Name of catalog
+        #     * "CatalogItems"<~Array>
+        #       * "href"<~String> - linke to item
+        #       * "name"<~String> - name of item
+        #       * "type"<~String> - type of item
+        #     * "description"<~String> - Description of catalog
+        #     * "name"<~String> - Name of catalog
         def get_catalog(vdc_id)
           request(
-              :expects  => 200,
-              :method   => 'GET',
-              :parser   => Fog::Parsers::Terremark::GetCatalog.new,
-              :path     => "vdc/#{vdc_id}/catalog"
+            :expects  => 200,
+            :method   => "GET",
+            :parser   => Fog::Parsers::Terremark::GetCatalog.new,
+            :path     => "vdc/#{vdc_id}/catalog"
           )
         end
       end

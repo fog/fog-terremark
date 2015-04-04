@@ -11,9 +11,9 @@ module Fog
         # Nothing
         def power_shutdown(vapp_id)
           request(
-              :expects  => 204,
-              :method   => 'POST',
-              :path     => "vApp/#{vapp_id}/power/action/shutdown"
+            :expects  => 204,
+            :method   => "POST",
+            :path     => "vApp/#{vapp_id}/power/action/shutdown"
           )
         end
       end

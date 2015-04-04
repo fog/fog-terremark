@@ -5,7 +5,7 @@ module Fog
         model Fog::Compute::Terremark::Address
 
         def all
-          load(service.get_public_ips(vdc_id).body['PublicIpAddresses'])
+          load(service.get_public_ips(vdc_id).body["PublicIpAddresses"])
         end
 
         def get(ip_id)

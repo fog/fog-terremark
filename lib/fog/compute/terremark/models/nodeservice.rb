@@ -18,14 +18,12 @@ module Fog
         def save
           requires :Name, :Port, :InternetServiceId
           data = service.add_node_service(
-              service_id = self.InternetServiceId,
-              ip = self.IpAddress,
-              name = self.Name,
-              port = self.Port,
-              options = {"Enabled" => 'true',
-                         "Description" => self.Name,
-              }
-
+            self.InternetServiceId,
+            self.IpAddress,
+            self.Name,
+            self.Port,
+            "Enabled" => "true",
+            "Description" => self.Name
           )
           merge_attributes(data.body)
           true
@@ -36,7 +34,7 @@ module Fog
         attr_writer :type, :size, :Links
 
         def href=(new_href)
-          self.id = new_href.split('/').last.to_i
+          self.id = new_href.split("/").last.to_i
         end
       end
     end

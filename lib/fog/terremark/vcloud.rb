@@ -1,13 +1,13 @@
 module Fog
   module Terremark
     class Vcloud < Fog::Compute::Terremark
-      autoload :Mock, 'fog/terremark/vcloud/mock'
-      autoload :Real, 'fog/terremark/vcloud/real'
+      autoload :Mock, File.expand_path("../vcloud/mock", __FILE__)
+      autoload :Real, File.expand_path("../vcloud/real", __FILE__)
 
-      HOST   = 'services.vcloudexpress.terremark.com'
-      PATH   = '/api/v0.8a-ext1.6'
+      HOST   = "services.vcloudexpress.terremark.com"
+      PATH   = "/api/v0.8a-ext1.6"
       PORT   = 443
-      SCHEME = 'https'
+      SCHEME = "https"
 
       def self.new(options = {})
         Fog::Logger.deprecation("Fog::Terremark::Vcloud is deprecated, to be replaced with Vcloud 1.0 someday/maybe [light_black](#{caller.first})[/]")

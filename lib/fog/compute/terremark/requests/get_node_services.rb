@@ -14,11 +14,11 @@ module Fog
         #
         def get_node_services(service_id)
           request(
-              :expects  => 200,
-              :method   => 'GET',
-              :parser   => Fog::Parsers::Terremark::GetNodeServices.new,
-              :path     => "api/extensions/v1.6/internetService/#{service_id}/nodeServices",
-              :override_path => true
+            :expects  => 200,
+            :method   => "GET",
+            :parser   => Fog::Parsers::Terremark::GetNodeServices.new,
+            :path     => "api/extensions/v1.6/internetService/#{service_id}/nodeServices",
+            :override_path => true
           )
         end
       end

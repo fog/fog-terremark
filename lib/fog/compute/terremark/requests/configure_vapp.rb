@@ -6,14 +6,14 @@ module Fog
           items = ""
           vapp_uri = [@host, @path, "vApp", vapp_id.to_s].join("/")
 
-          if options['vcpus']
+          if options["vcpus"]
             vcpu_item = <<-DATA
 <Item xmlns="http://schemas.dmtf.org/ovf/envelope/1"> <InstanceID xmlns="http://schemas.dmtf.org/wbem/wscim/1/cim-schema/2/CIM_ResourceAllocationSettingData">1</InstanceID><ResourceType xmlns="http://schemas.dmtf.org/wbem/wscim/1/cim-schema/2/CIM_ResourceAllocationSettingData">3</ResourceType><VirtualQuantity xmlns="http://schemas.dmtf.org/wbem/wscim/1/cim-schema/2/CIM_ResourceAllocationSettingData">#{options['vcpus']}</VirtualQuantity></Item>
             DATA
             items << vcpu_item
           end
 
-          if options['memory']
+          if options["memory"]
             memory_item = <<-DATA
 <Item xmlns="http://schemas.dmtf.org/ovf/envelope/1"><InstanceID xmlns="http://schemas.dmtf.org/wbem/wscim/1/cim-schema/2/CIM_ResourceAllocationSettingData">2</InstanceID><ResourceType xmlns="http://schemas.dmtf.org/wbem/wscim/1/cim-schema/2/CIM_ResourceAllocationSettingData">4</ResourceType>38<VirtualQuantity xmlns="http://schemas.dmtf.org/wbem/wscim/1/cim-schema/2/CIM_ResourceAllocationSettingData">#{options['memory']}</VirtualQuantity></Item>
             DATA
@@ -26,8 +26,8 @@ module Fog
           DATA
           items << virtual_disk_item
           #Additional disks
-          if options['virtual_disks']
-            for disk in options['virtual_disks']
+          if options["virtual_disks"]
+            options["virtual_disks"].each do |disk|
               actual_size = disk.to_i * 1024 * 1024
               virtual_disk_item = <<-DATA
 <Item>
@@ -45,11 +45,11 @@ module Fog
           DATA
 
           request(
-              :body => data,
-              :expects => 202,
-              :headers => { 'Content-Type' => 'application/vnd.vmware.vCloud.vApp+xml' },
-              :method => 'PUT',
-              :path => "vapp/#{vapp_id}"
+            :body => data,
+            :expects => 202,
+            :headers => { "Content-Type" => "application/vnd.vmware.vCloud.vApp+xml" },
+            :method => "PUT",
+            :path => "vapp/#{vapp_id}"
           )
         end
       end

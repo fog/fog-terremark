@@ -27,8 +27,8 @@ module Fog
                 protocol = self.Protocol,
                 port = self.Port,
                 options = {
-                    'Enabled' => 'true',
-                    "Description" => self.Name
+                  "Enabled" => "true",
+                  "Description" => self.Name
                 }
             )
           else
@@ -39,8 +39,8 @@ module Fog
                 protocol = self.Protocol,
                 port = self.Port,
                 options = {
-                    'Enabled' => 'true',
-                    "Description" => self.Name
+                  "Enabled" => "true",
+                  "Description" => self.Name
                 }
             )
           end
@@ -52,7 +52,7 @@ module Fog
         attr_writer :type, :size, :Links
 
         def href=(new_href)
-          self.id = new_href.split('/').last.to_i
+          self.id = new_href.split("/").last.to_i
         end
       end
     end

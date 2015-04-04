@@ -5,7 +5,7 @@ module Fog
         model Fog::Compute::Terremark::Task
 
         def all
-          data = service.get_tasks_list(task_list_id).body['Tasks']
+          data = service.get_tasks_list(task_list_id).body["Tasks"]
           load(data)
         end
 
@@ -24,7 +24,7 @@ module Fog
           organization = service.get_organization(service.default_organization_id).body
           @task_list_id ||=
               if service.default_organization_id && organization
-                organization['Links'].find {|link| link['type'] == 'application/vnd.vmware.vcloud.tasksList+xml'}['href'].split('/').last.to_i
+                organization["Links"].detect { |link| link["type"] == "application/vnd.vmware.vcloud.tasksList+xml" }["href"].split("/").last.to_i
               else
                 nil
               end

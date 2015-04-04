@@ -1,14 +1,14 @@
 module Fog
   module Compute
     class Terremark < Fog::Service
-      autoload :Common, 'fog/compute/terremark/common'
-      autoload :Parser, 'fog/compute/terremark/parser'
-      autoload :Real, 'fog/compute/terremark/real'
-      autoload :Mock, 'fog/compute/terremark/mock'
+      autoload :Common, File.expand_path("../terremark/common", __FILE__)
+      autoload :Parser, File.expand_path("../terremark/parser", __FILE__)
+      autoload :Real, File.expand_path("../terremark/real", __FILE__)
+      autoload :Mock, File.expand_path("../terremark/mock", __FILE__)
 
       requires :terremark_vcloud_username, :terremark_vcloud_password
 
-      model_path 'fog/compute/terremark/models'
+      model_path "fog/compute/terremark/models"
       model       :address
       collection  :addresses
       model       :image
@@ -26,7 +26,7 @@ module Fog
       model       :vdc
       collection  :vdcs
 
-      request_path 'fog/compute/terremark/requests'
+      request_path "fog/compute/terremark/requests"
       request :add_internet_service
       request :add_node_service
       request :configure_vapp

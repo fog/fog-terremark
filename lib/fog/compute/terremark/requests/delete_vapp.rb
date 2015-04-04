@@ -9,9 +9,9 @@ module Fog
         #
         def delete_vapp(vapp_id)
           request(
-              :expects  => 202,
-              :method   => 'DELETE',
-              :path     => "vApp/#{vapp_id}"
+            :expects  => 202,
+            :method   => "DELETE",
+            :path     => "vApp/#{vapp_id}"
           )
         end
       end

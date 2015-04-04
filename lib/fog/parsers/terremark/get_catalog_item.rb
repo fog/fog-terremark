@@ -3,25 +3,25 @@ module Fog
     module Terremark
       class GetCatalogItem < Base
         def reset
-          @response = { 'Entity' => {}, 'Properties' => {} }
+          @response = { "Entity" => {}, "Properties" => {} }
         end
 
         def start_element(name, attributes)
           super
           case name
-            when 'Entity'
-              @response['Entity'] = extract_attributes(attributes)
-            when 'CatalogItem'
-              catalog_item = extract_attributes(attributes)
-              @response['name'] = catalog_item['name']
-            when 'Property'
-              @property_key = attributes.value
+          when "Entity"
+            @response["Entity"] = extract_attributes(attributes)
+          when "CatalogItem"
+            catalog_item = extract_attributes(attributes)
+            @response["name"] = catalog_item["name"]
+          when "Property"
+            @property_key = attributes.value
           end
         end
 
         def end_element(name)
-          if name == 'Property'
-            @response['Properties'][@property_key] = value
+          if name == "Property"
+            @response["Properties"][@property_key] = value
           end
         end
       end

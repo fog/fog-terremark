@@ -66,7 +66,7 @@ module Fog
           true
         end
 
-        # { '0' => 'Being created', '2' => 'Powered Off', '4' => 'Powered On'}
+        # { "0" => "Being created", "2" => "Powered Off", "4" => "Powered On"}
         def ready?
           status == VAppStatus::POWERED_OFF
         end
@@ -84,7 +84,7 @@ module Fog
           begin
             service.power_on(id)
           rescue Excon::Errors::InternalServerError => e
-            #Frankly we shouldn't get here ...
+            # Frankly we shoudln't get here ...
             raise e unless e.to_s =~ /because it is already powered on/
           end
           true
@@ -95,7 +95,7 @@ module Fog
           begin
             service.power_off(id)
           rescue Excon::Errors::InternalServerError => e
-            #Frankly we shouldn't get here ...
+            # Frankly we shoudln't get here ...
             raise e unless e.to_s =~ /because it is already powered off/
           end
           true
@@ -106,7 +106,7 @@ module Fog
           begin
             service.power_shutdown(id)
           rescue Excon::Errors::InternalServerError => e
-            #Frankly we shouldn't get here ...
+            # Frankly we shoudln't get here ...
             raise e unless e.to_s =~ /because it is already powered off/
           end
           true
@@ -171,9 +171,9 @@ module Fog
               server_name=name,
               vapp_template=image,
               options={
-                  'ssh_key_fingerprint' => sshkeyFingerPrint,
-                  'cpus' => vcpus,
-                  'memory' => memory
+                "ssh_key_fingerprint" => sshkeyFingerPrint,
+                "cpus" => vcpus,
+                "memory" => memory
               })
 
           merge_attributes(data.body)
@@ -193,7 +193,7 @@ module Fog
         attr_writer :type, :size, :Links
 
         def href=(new_href)
-          self.id = new_href.split('/').last.to_i
+          self.id = new_href.split("/").last.to_i
         end
       end
     end

@@ -5,7 +5,7 @@ module Fog
         model Fog::Compute::Terremark::Network
 
         def all
-          data = service.get_vdc(vdc_id).body['AvailableNetworks'].map do |network|
+          data = service.get_vdc(vdc_id).body["AvailableNetworks"].map do |network|
             service.get_network(network["href"].split("/").last).body
           end
           load(data)

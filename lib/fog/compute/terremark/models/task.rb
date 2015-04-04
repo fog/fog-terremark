@@ -4,19 +4,19 @@ module Fog
       class Task < Fog::Model
         identity :id
 
-        attribute :end_time,    :aliases => 'endTime'
-        attribute :owner,       :aliases => 'Owner'
-        attribute :result,      :aliases => 'Result'
-        attribute :start_time,  :aliases => 'startTime'
+        attribute :end_time,    :aliases => "endTime"
+        attribute :owner,       :aliases => "Owner"
+        attribute :result,      :aliases => "Result"
+        attribute :start_time,  :aliases => "startTime"
         attribute :status
-        attribute :link,        :aliases => 'Link'
-        attribute :error,       :aliases => 'Error'
+        attribute :link,        :aliases => "Link"
+        attribute :error,       :aliases => "Error"
 
         def initialize(attributes = {})
-          new_owner  = attributes.delete('Owner')
-          new_result = attributes.delete('Result')
-          new_error = attributes.delete('Error')
-          new_cancel_link = attributes.delete('Link')
+          new_owner  = attributes.delete("Owner")
+          new_result = attributes.delete("Result")
+          new_error = attributes.delete("Error")
+          new_cancel_link = attributes.delete("Link")
 
           super
           self.owner = service.parse(new_owner)
@@ -28,13 +28,13 @@ module Fog
         end
 
         def ready?
-          @status == 'success'
+          @status == "success"
         end
 
         private
 
         def href=(new_href)
-          @id = new_href.split('/').last.to_i
+          @id = new_href.split("/").last.to_i
         end
 
         def type=(_new_type); end

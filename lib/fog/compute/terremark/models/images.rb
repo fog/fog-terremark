@@ -5,8 +5,8 @@ module Fog
         model Fog::Compute::Terremark::Image
 
         def all
-          data = service.get_catalog(vdc_id).body['CatalogItems'].select do |entity|
-            entity['type'] == "application/vnd.vmware.vcloud.catalogItem+xml"
+          data = service.get_catalog(vdc_id).body["CatalogItems"].select do |entity|
+            entity["type"] == "application/vnd.vmware.vcloud.catalogItem+xml"
           end
           load(data)
         end
