@@ -1,6 +1,6 @@
 # Fog::Terremark
 
-![Gem Version](https://badge.fury.io/rb/fog-terremark.svg) [![Build Status](https://travis-ci.org/fog/fog-terremark.svg?branch=master)](https://travis-ci.org/fog/fog-terremark) [![Dependency Status](https://gemnasium.com/fog/fog-terremark.svg)](https://gemnasium.com/fog/fog-terremark) [![Coverage Status](https://img.shields.io/coveralls/fog/fog-terremark.svg)](https://coveralls.io/r/fog/fog-terremark?branch=master) [![Code Climate](https://codeclimate.com/github/fog/fog-terremark.png)](https://codeclimate.com/github/fog/fog-terremark)
+![Gem Version](https://badge.fury.io/rb/fog-terremark.svg) [![Build Status](https://travis-ci.org/fog/fog-terremark.svg?branch=master)](https://travis-ci.org/fog/fog-terremark) [![Dependency Status](https://gemnasium.com/fog/fog-terremark.svg)](https://gemnasium.com/fog/fog-terremark) [![Coverage Status](https://img.shields.io/coveralls/fog/fog-terremark.svg)](https://coveralls.io/r/fog/fog-terremark?branch=master) [![Code Climate](https://codeclimate.com/github/fog/fog-terremark/badges/gpa.svg)](https://codeclimate.com/github/fog/fog-terremark)
 
 Module for the "fog" gem to support Terremark vCloud
 
