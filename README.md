@@ -1,3 +1,7 @@
+# ARCHIVED
+
+We have archived this repository as to the best of our knowledge this service is no longer in operation.
+
 # Fog::Terremark
 
 ![Gem Version](https://badge.fury.io/rb/fog-terremark.svg) [![Build Status](https://travis-ci.org/fog/fog-terremark.svg?branch=master)](https://travis-ci.org/fog/fog-terremark) [![Dependency Status](https://gemnasium.com/fog/fog-terremark.svg)](https://gemnasium.com/fog/fog-terremark) [![Coverage Status](https://img.shields.io/coveralls/fog/fog-terremark.svg)](https://coveralls.io/r/fog/fog-terremark?branch=master) [![Code Climate](https://codeclimate.com/github/fog/fog-terremark/badges/gpa.svg)](https://codeclimate.com/github/fog/fog-terremark)
